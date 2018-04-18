@@ -28,6 +28,10 @@
             </ul>
             <!-- /.navbar-top-links -->
             @endif
-            @include('layout_hdv.menu')
+            @if(Auth::user()->status ==2)
+                @include('layout_hdv.menu')
+            @else
+                 <marquee><font size="30" color="red">Ban can lien he admin qua so dien thoai 01683494193 de duoc cap quyen tao tour</font></marquee>
+            @endif
             <!-- /.navbar-static-side -->
         </nav>

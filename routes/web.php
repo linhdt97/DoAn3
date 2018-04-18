@@ -19,11 +19,18 @@ Route::get('trang-chu',['as' => 'trang-chu', 'uses' => 'PageController@getTrangc
 Route::get('quy-dinh',['as' => 'quy-dinh', 'uses' => 'PageController@getQuydinh']);
 
 Route::get('chi-tiet-{idtour}',['as' => 'chitiet', 'uses' => 'PageController@getChitiet']);
+
+//dat tour
 Route::get('dat-tour-{idtour}',['as' => 'dattour', 'uses' => 'PageController@getDattour']);
+Route::post('dat-tour-{idtour}',['as' => 'dattour', 'uses' => 'PageController@postDattour']);
+Route::get('dat-tour-error',function(){
+	return view('page_client.index');
+});
 
 Route::get('thong-tin-hdv-{idhdv}',['as' => 'tthdv', 'uses' => 'PageController@getThongtinHDV']);
 Route::get('tour-cua-hdv-{idhdv}',['as' => 'tour_hdv', 'uses' => 'PageController@getTourOfHdv']);
 
+//dang ky
 Route::get('dang-ky-khach',['as'=>'dang-ky-khach', 'uses'=> 'PageController@getDangkykhach']);
 Route::post('dang-ky-khach',['as'=>'dang-ky-khach', 'uses'=> 'PageController@postDangkykhach']);
 
@@ -64,6 +71,7 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('xoakhach/{idk}',['as'=>'xoakhach1', 'uses'=> 'AdminController@Xoakhach']);
 	Route::get('dshdv',['as'=>'dshdv1', 'uses'=> 'AdminController@getDShdv']);
 	Route::get('xoahdv/{idhdv}',['as'=>'xoahdv1', 'uses'=> 'AdminController@Xoahdv']);
+	Route::get('chapnhan/{idhdv}',['as'=>'cnhdv1', 'uses'=> 'AdminController@ChapnhanHdv']);
 
 	//Quan ly dia diem du lich
 	Route::get('dsdd',['as'=>'dsdd1', 'uses'=> 'AdminController@getDSdd']);

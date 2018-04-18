@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Tour;
 use App\Diadiem;
+use App\Bill;
 use Hash;
 use Auth;
 
@@ -24,8 +25,31 @@ class PageController extends Controller
         return view('page_client.chitiet', compact('cttour'));
     }
 
-    public function getDattour(){
-        
+    public function getDattour($idtour){
+        $dtour = Tour::select('tour.id','users_id','giatour','tentour','tendiadiem')->join('diadiem','diadiem.id','=','tour.diadiem_id')->where('tour.id',$idtour)->get();
+        // echo '<pre>';
+        // print_r($dtour);
+        // echo '</pre>';
+        return view('page_client.dattour', compact('dtour'));      
+    }
+
+    public function postDattour($idtour, Request $request){
+        $this-> validate($request,
+            [
+                'timeBD'=>'required|date',
+            ],
+            [
+                'timeBD.required'=>'Vui long nhap thoi gian bat dau',
+                'timeBD.date'=>'Khong dung dinh dang date',
+            ]);
+        $bill = new Bill();
+        $bill->tour_id = $request->idtour;
+        $bill->users_id = $request->idkhach;
+        $bill->tongtien = $request->giatour;
+        $bill->tinhtrangdon = 0;
+        $bill->timeBD = $request->timeBD;
+        $bill->save();
+        return redirect()->back()->with('thanhcong','Gui don dat tour thanh cong');
     }
 
     public function getThongtinHDV($idhdv){
