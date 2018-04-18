@@ -13,17 +13,16 @@
 			<div class="row-item row">
 				<div class="col-md-12 border-right">
 					<div class="col-md-3">
-						<a href="chitiet.html">
-							<img class="img-responsive" src="image/320x150.png" alt="">
-						</a>
+						<img src="upload/{{$t->hinhanh}}" width="170" height="120" alt="" style="margin-top: 30px">
 					</div>
 					<div class="col-md-9">
 						<h3>
-							<a href="">{{$t->tentour}}</a>
-						</h3><br>
-						Dia diem: <a>{{$t->tendiadiem}}</a><br>
-						Huong dan vien:<a> {{$t->hoten}}</a>	
-						<p>{{$t->mota}}</p>
+							<a>{{$t->tentour}}</a>
+						</h3>
+						<p>Huong dan vien:<a> {{$t->hoten}}</a></p>
+						<p>Dia diem: {{$t->tendiadiem}}<br>
+							
+						<p>Gia tour: {{$t->giatour}}</p>
 						<a class="btn btn-primary" href="{{route('chitiet',$t->id)}}">Chi tiet<span class="glyphicon glyphicon-chevron-right"></span></a>
 					</div>
 				</div>

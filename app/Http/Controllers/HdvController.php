@@ -17,7 +17,7 @@ class HdvController extends Controller
 
     public function getDanhsachtour(){
     	$iduser = Auth::user()->id;
-    	$tour = Tour::select('tour.id','tendiadiem','giatour','sokhachmax','sokhachdangky','hinhanh','mota','tentour')->where('users_id',$iduser)->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
+    	$tour = Tour::select('tour.id','tendiadiem','giatour','sokhachmax','sokhachdangky','hinhanh','mota','tentour','hinhanh')->where('users_id',$iduser)->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
     	//print_r($tour);
     	return view('page_hdv.danhsachtour', compact('tour'));
     }
@@ -50,6 +50,29 @@ class HdvController extends Controller
     	$tour->sokhachdangky=0;
     	$tour->giatour= $request->giatour;
     	$tour->mota= $request->mota;
+
+        if($request->hasFile('hinhanh')){
+            $file = $request->file('hinhanh');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != "png" && $duoi != "jpeg"){
+                return redirect()->back()->with('loi','Định dạng ảnh phải là jpg, png, jpeg');
+            }
+
+            $name = $file->getClientOriginalName();
+            echo $name;
+            $hinhanh= str_random(4)."_".$name;
+            while(file_exists("upload".$hinhanh)){
+                $hinhanh= str_random(4)."_".$name;
+            }
+            
+            $file->move("upload",$hinhanh);
+            $tour->hinhanh = $hinhanh;
+        }
+        else
+        {
+            $tour->hinhanh = "";
+        }
+
     	$tour->save();
     	return redirect()->back()->with('thanhcong','Them tour thanh cong');
     }
@@ -83,6 +106,23 @@ class HdvController extends Controller
     	$tour->sokhachmax=$request->sokhachmax;
     	$tour->hinhanh =$request->hinhanh;
     	$tour->diadiem_id=$request->diadiem;
+        if($request->hasFile('hinhanh')){
+            $file = $request->file('hinhanh');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != "png" && $duoi != "jpeg"){
+                return redirect()->back()->with('loi','Định dạng ảnh phải là jpg,png,jpeg');
+            }
+
+            $name = $file->getClientOriginalName();
+            $hinhanh= str_random(4)."_".$name;
+            while(file_exists("upload".$hinhanh)){
+                $hinhanh= str_random(4)."_".$name;
+            }
+            
+            $file->move("upload",$hinhanh);
+            $tour->hinhanh = $hinhanh;
+        }
+
     	$tour->save();
     	return redirect()->back()->with('thanhcong','Sua tour thanh cong');
 

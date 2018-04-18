@@ -6,9 +6,11 @@
 
             @if(count($errors)>0)
                 <div class="alert alert-danger">
+                    <ul>
                     @foreach($errors->all() as $err)
-                        {{$err}}
+                        <li>{{$err}}</li>
                     @endforeach
+                    </ul>
                 </div>
             @endif
             @if(session('thanhcong'))
@@ -16,12 +18,17 @@
                     {{Session::get('thanhcong')}}
                 </div>
             @endif
+            @if(session('loi'))
+                <div class="alert alert-danger">
+                    {{Session::get('loi')}}
+                </div>
+            @endif
 
             <div class="btn btn-success" style="width: 100%">
                 <h2 style="margin-top:0px; margin-bottom:0px; text-align: center;"> Them Tour</h2>
             </div>
             <div class="panel-body">
-                <form action="{{route('themtour')}}" method="post">
+                <form action="{{route('themtour')}}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{csrf_token()}}"> 
                     <div>
                         <label>Ten tour</label>
@@ -59,7 +66,7 @@
 
                     <div>
                         <label>Hinh anh</label>
-                        <input type="file" class="form-control" name="hinhanh" aria-describedby="basic-addon1">
+                        <input type="file" class="form-control" name="hinhanh">
                     </div>
                     <br>
 

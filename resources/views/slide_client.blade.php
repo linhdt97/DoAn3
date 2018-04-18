@@ -9,13 +9,13 @@
                     </ol>
                     <div class="carousel-inner" style="">
                         <div class="item active">
-                            <img class="slide-image" src="dulich/image/800x200.png" alt="" >
+                            <img class="slide-image" src="dulich/image/slide/slide1.jpg" alt="" >
                         </div>
                         <div class="item">
-                            <img class="slide-image" src="dulich/image/800x200.png" alt="">
+                            <img class="slide-image" src="dulich/image/slide/slide2.jpg" alt="">
                         </div>
                         <div class="item">
-                            <img class="slide-image" src="dulich/image/800x200.png" alt="">
+                            <img class="slide-image" src="dulich/image/slide/slide3.jpg" alt="">
                         </div>
                     </div>
                     <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

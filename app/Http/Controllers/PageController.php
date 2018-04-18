@@ -13,12 +13,12 @@ use Auth;
 class PageController extends Controller
 {
     public function getTrangchu(){
-        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota')->join('users','tour.users_id','=','users.id')->get();
+        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','hinhanh','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
         return view('page_client.index',compact('tour'));
     }
 
     public function getChitiet($idtour){
-        $cttour = Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','sokhachmax','sokhachdangky','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('tour.id',$idtour)->get();
+        $cttour = Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','sokhachmax','tendiadiem','hinhanh')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('tour.id',$idtour)->get();
         // echo '<pre>';
         // print_r($cttour);
         // echo '</pre>';
@@ -37,10 +37,12 @@ class PageController extends Controller
         $this-> validate($request,
             [
                 'timeBD'=>'required|date',
+                'sokhachdangky'=>'required',
             ],
             [
                 'timeBD.required'=>'Vui long nhap thoi gian bat dau',
                 'timeBD.date'=>'Khong dung dinh dang date',
+                'sokhachdangky.required'=>'Vui long nhap so khach dang ky',
             ]);
         $bill = new Bill();
         $bill->tour_id = $request->idtour;
@@ -48,6 +50,12 @@ class PageController extends Controller
         $bill->tongtien = $request->giatour;
         $bill->tinhtrangdon = 0;
         $bill->timeBD = $request->timeBD;
+
+        $tour = Tour::find($idtour);
+        if($tour->sokhachmax < $request->sokhachdangky) return redirect()->back()->with('loi','So khach dang ky phai nho hon hoac bang so khach max.');
+        $tour->sokhachdangky = $request->sokhachdangky;
+        $tour->save();
+
         $bill->save();
         return redirect()->back()->with('thanhcong','Gui don dat tour thanh cong');
     }
@@ -61,7 +69,7 @@ class PageController extends Controller
     }
 
     public function getTourOfHdv($idhdv){
-        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('users_id',$idhdv)->get();
+        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','tendiadiem','hinhanh')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('users_id',$idhdv)->get();
         //print_r($tour);
         return view('page_client.tour_cua_hdv', compact('tour'));
     }

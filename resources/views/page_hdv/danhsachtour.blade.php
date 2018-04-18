@@ -39,7 +39,7 @@
                             <td>{{$dst->sokhachmax}}</td>
                             <td>{{number_format($dst->giatour)}}</td>
                             <td>{{$dst->mota}}</td>   
-                            <td>{{$dst->hinhanh}}</td>
+                            <td><img src="upload/{{$dst->hinhanh}}" width="50" height="50"></td>
                             @if($dst->sokhachdangky == 0)               
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('suatour',$dst->id)}}"> Edit</a></td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('xoatour',$dst->id)}}"> Delete</a></td>
