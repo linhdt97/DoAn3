@@ -13,7 +13,13 @@
                 <div class="alert alert-success" style="margin-top: 100px; width: 40%" align="center">
                     {{session('thongbao')}}
                 </div>
-            @endif
+                @endif
+
+                @if(session('success'))
+                <div class="alert alert-success" style="margin-top: 100px; width: 40%" align="center">
+                    {{session('success')}}
+                </div>
+                @endif
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
@@ -22,7 +28,9 @@
                         <th>Email</th>
                         <th>So dien thoai</th>
                         <th>Dia chi</th>
+                        <th>Status</th>
                         <th>Xoa</th>
+                        <th>Cap quyen tao tour</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,8 +40,10 @@
                             <td>{{$dsh->hoten}}</td>
                             <td>{{$dsh->email}}</td>
                             <td>{{$dsh->sodienthoai}}</td>
-                            <td>{{$dsh->diachi}}</td>                   
+                            <td>{{$dsh->diachi}}</td>  
+                            <td>{{$dsh->status}}</td>                 
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('xoahdv1',$dsh->id)}}"> Delete</a></td>
+                            <td class="center"><i class=""></i><a href="{{route('cnhdv1',$dsh->id)}}"> Chap nhan</a></td>
                         </tr>
                     @endforeach
                 </tbody>

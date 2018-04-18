@@ -25,7 +25,11 @@
 						<p>So khach dang ky/So khach toi da: {{$t->sokhachdangky}} / {{$t->sokhachmax}}</p>
 						<p>Gia: {{$t->giatour}}</p>
 						<p>Mo ta: {{$t->mota}}</p>
+						@if(Auth::check())
 						<a class="btn btn-primary" href="{{route('dattour',$t->id)}}">Dat tour<span class="glyphicon glyphicon-chevron-right"></span></a>
+						@else
+						<a class="btn btn-primary" href="dat-tour-error">Dat tour<span class="glyphicon glyphicon-chevron-right"></span></a>
+						@endif
 					</div>
 				</div>
 

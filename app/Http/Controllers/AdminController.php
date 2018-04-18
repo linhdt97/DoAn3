@@ -18,7 +18,7 @@ class AdminController extends Controller
     }
 
     public function getDShdv(){
-    	$dshdv = User::select('id','hoten','email','sodienthoai','diachi')->where('quyen',2)->get();
+    	$dshdv = User::select('id','hoten','email','sodienthoai','diachi','status')->where('quyen',2)->get();
     	return view('admin.page_admin.danhsachhdv', compact('dshdv'));
     }
 
@@ -80,5 +80,12 @@ class AdminController extends Controller
     public function Xoahdv($idhdv){
     	User::find($idhdv)->delete();
     	return redirect()->back()->with('thongbao','Xoa thanh cong');
+    }
+
+    public function ChapnhanHDV($idhdv){
+        $cn = User::find($idhdv);
+        $cn->status=2;
+        $cn->save();
+        return redirect()->back()->with('success','Thanh cong');
     }
 }
