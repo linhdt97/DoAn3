@@ -18,6 +18,12 @@ Route::get('/', function () {
 Route::get('trang-chu',['as' => 'trang-chu', 'uses' => 'PageController@getTrangchu']);
 Route::get('quy-dinh',['as' => 'quy-dinh', 'uses' => 'PageController@getQuydinh']);
 
+Route::get('chi-tiet-{idtour}',['as' => 'chitiet', 'uses' => 'PageController@getChitiet']);
+Route::get('dat-tour-{idtour}',['as' => 'dattour', 'uses' => 'PageController@getDattour']);
+
+Route::get('thong-tin-hdv-{idhdv}',['as' => 'tthdv', 'uses' => 'PageController@getThongtinHDV']);
+Route::get('tour-cua-hdv-{idhdv}',['as' => 'tour_hdv', 'uses' => 'PageController@getTourOfHdv']);
+
 Route::get('dang-ky-khach',['as'=>'dang-ky-khach', 'uses'=> 'PageController@getDangkykhach']);
 Route::post('dang-ky-khach',['as'=>'dang-ky-khach', 'uses'=> 'PageController@postDangkykhach']);
 
@@ -29,6 +35,27 @@ Route::post('dang-nhap',['as'=>'dang-nhap', 'uses'=> 'PageController@postDangnha
 
 Route::get('dang-xuat',['as'=>'dang-xuat', 'uses'=> 'PageController@getDangxuat']);
 
+//--------------------HDV------------------
+Route::group(['prefix'=>'hdv'], function(){
+	Route::get('trang-chu',['as' => 'trang-chu-hdv', 'uses'=>'HdvController@trangchu']);
+
+	Route::get('dstour',['as'=>'dstour', 'uses'=>'HdvController@getDanhsachtour']);
+
+	Route::get('themtour',['as'=>'themtourthemtour', 'uses'=>'HdvController@getThemtour']);
+	Route::post('themtour',['as'=>'themtour', 'uses'=>'HdvController@postThemtour']);
+	Route::get('suatour/{idtour}',['as'=>'suatour', 'uses'=>'HdvController@getSuatour']);
+	Route::post('suatour/{idtour}',['as'=>'suatour', 'uses'=>'HdvController@postSuatour']);
+	Route::get('xoatour/{idtour}',['as'=>'xoatour', 'uses'=>'HdvController@getXoatour']);
+
+});
+
+
+
+
+
+
+
+//------------------ADMIN------------------
 Route::group(['prefix'=>'admin'],function(){
 	Route::get('trang-chu',['as'=>'trang-chu-admin', 'uses'=> 'AdminController@trangchu']);
 	

@@ -9,21 +9,23 @@
 
 		<div class="panel-body">
 			<!-- item -->
-			@foreach($tour as $t)
+			@foreach($cttour as $t)
 			<div class="row-item row">
 				<div class="col-md-12 border-right">
 					<div class="col-md-3">
 						<a href="chitiet.html">
-							<img class="img-responsive" src="dulich/image/320x150.png" alt="">
+							<img class="img-responsive" src="image/320x150.png" alt="">
 						</a>
 					</div>
 					<div class="col-md-9">
 						<h3>
-							<a href="">{{$t->tentour}}</a>
+							{{$t->tentour}}
 						</h3>
-						huong dan vien:<a href="{{route('tthdv',$t->users_id)}}"> {{$t->hoten}}</a>	
-						<p>{{$t->mota}}</p>
-						<a class="btn btn-primary" href="chi-tiet-{{$t->id}}">Chi tiet<span class="glyphicon glyphicon-chevron-right"></span></a>
+						<p>Huong dan vien:<a href="{{route('tthdv',$t->users_id)}}"> {{$t->hoten}}</a><p>
+						<p>So khach dang ky/So khach toi da: {{$t->sokhachdangky}} / {{$t->sokhachmax}}</p>
+						<p>Gia: {{$t->giatour}}</p>
+						<p>Mo ta: {{$t->mota}}</p>
+						<a class="btn btn-primary" href="{{route('dattour',$t->id)}}">Dat tour<span class="glyphicon glyphicon-chevron-right"></span></a>
 					</div>
 				</div>
 

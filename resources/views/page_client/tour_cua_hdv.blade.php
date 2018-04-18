@@ -14,16 +14,17 @@
 				<div class="col-md-12 border-right">
 					<div class="col-md-3">
 						<a href="chitiet.html">
-							<img class="img-responsive" src="dulich/image/320x150.png" alt="">
+							<img class="img-responsive" src="image/320x150.png" alt="">
 						</a>
 					</div>
 					<div class="col-md-9">
 						<h3>
 							<a href="">{{$t->tentour}}</a>
-						</h3>
-						huong dan vien:<a href="{{route('tthdv',$t->users_id)}}"> {{$t->hoten}}</a>	
+						</h3><br>
+						Dia diem: <a>{{$t->tendiadiem}}</a><br>
+						Huong dan vien:<a> {{$t->hoten}}</a>	
 						<p>{{$t->mota}}</p>
-						<a class="btn btn-primary" href="chi-tiet-{{$t->id}}">Chi tiet<span class="glyphicon glyphicon-chevron-right"></span></a>
+						<a class="btn btn-primary" href="{{route('chitiet',$t->id)}}">Chi tiet<span class="glyphicon glyphicon-chevron-right"></span></a>
 					</div>
 				</div>
 

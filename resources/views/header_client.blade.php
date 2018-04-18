@@ -24,7 +24,7 @@
                     @if(Auth::check())
                         <li><a href=""><i class="fa fa-user"></i>{{Auth::User()->hoten}}</a></li>
                         @if(Auth::User()->quyen == 2)                    
-                            <li><a href=""><i class="fa fa-user"></i>Den trang quan ly tour</a></li>
+                            <li><a href="{{route('trang-chu-hdv')}}"><i class="fa fa-user"></i>Den trang quan ly tour</a></li>
                         @endif
                             
                     <li>
