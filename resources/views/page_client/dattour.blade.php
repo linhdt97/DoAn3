@@ -8,15 +8,23 @@
 
                 	@if(count($errors)>0)
                 		<div class="alert alert-danger">
+                			<ul>
                 			@foreach($errors->all() as $err )
-                				{{$err}}<br>
+                				<li>{{$err}}</li>
                 			@endforeach
+                			</ul>
                 		</div>
                 	@endif
 
                 	@if(Session::has('thanhcong'))
                 		<div class="alert alert-success">
                 			{{Session::get('thanhcong')}}
+                		</div>
+                	@endif
+
+                	@if(Session::has('loi'))
+                		<div class="alert alert-danger">
+                			{{Session::get('loi')}}
                 		</div>
                 	@endif
 
@@ -59,6 +67,13 @@
 							<div>
 				    			<label>Thoi gian bat dau</label>
 							  	<input type="text" class="form-control" placeholder="Nhap theo dang YYYY-MM-dd" name="timeBD" aria-describedby="basic-addon1"
+							  	>
+							</div>
+							<br>
+
+							<div>
+				    			<label>So luong nguoi dang ky</label>
+							  	<input type="text" class="form-control" placeholder="" name="sokhachdangky" aria-describedby="basic-addon1"
 							  	>
 							</div>
 							<br>

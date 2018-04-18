@@ -16,12 +16,17 @@
                     {{Session::get('thanhcong')}}
                 </div>
             @endif
+            @if(session('loi'))
+                <div class="alert alert-danger">
+                    {{Session::get('loi')}}
+                </div>
+            @endif
 
             <div class="btn btn-success" style="width: 100%">
                 <h2 style="margin-top:0px; margin-bottom:0px; text-align: center;"> Sua Tour</h2>
             </div>
             <div class="panel-body">
-                <form action="{{route('suatour',$idt->id)}}" method="post">
+                <form action="{{route('suatour',$idt->id)}}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{csrf_token()}}"> 
                     <div>
                         <label>Ten tour</label>
