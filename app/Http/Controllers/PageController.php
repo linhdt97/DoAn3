@@ -4,13 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;    
 use App\User;
+use App\Tour;
+use App\Diadiem;
 use Hash;
 use Auth;
 
 class PageController extends Controller
 {
     public function getTrangchu(){
-        return view('page_client.index');
+        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota')->join('users','tour.users_id','=','users.id')->get();
+        return view('page_client.index',compact('tour'));
+    }
+
+    public function getChitiet($idtour){
+        $cttour = Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','sokhachmax','sokhachdangky','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('tour.id',$idtour)->get();
+        // echo '<pre>';
+        // print_r($cttour);
+        // echo '</pre>';
+        return view('page_client.chitiet', compact('cttour'));
+    }
+
+    public function getDattour(){
+        
+    }
+
+    public function getThongtinHDV($idhdv){
+        $cthdv = User::where('id',$idhdv)->get();
+        // echo '<pre>';
+        // print_r($cthdv);
+        // echo '</pre>';
+        return view('page_client.thongtin_hdv', compact('cthdv'));
+    }
+
+    public function getTourOfHdv($idhdv){
+        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('users_id',$idhdv)->get();
+        //print_r($tour);
+        return view('page_client.tour_cua_hdv', compact('tour'));
     }
 
     public function getQuydinh(){
