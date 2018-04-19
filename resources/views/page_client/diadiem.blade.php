@@ -4,13 +4,13 @@
 <div class="col-md-9">
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color:#337AB7; color:white;" >	
-			<h2 style="margin-top:0px; margin-bottom:0px; text-align: center;">Dia diem</b></h2>
+			<h2 style="margin-top:0px; margin-bottom:0px; text-align: center;">Dia diem {{$dd->tendiadiem}}</b></h2>
 		</div>
 
 		<div class="panel-body">
 			<!-- item -->
-			@if(count($iddd)>0)
-			@foreach($iddd as $t)
+			@if(count($idd)>0)
+			@foreach($idd as $t)
 			<div class="row-item row">
 				<div class="col-md-12 border-right">
 					<div class="col-md-3">
@@ -31,7 +31,6 @@
 			</div>
 			<!-- end item -->
 			@endforeach
-
 			@else
 			Hien chua co tour du lich cho dia diem nay
 			@endif

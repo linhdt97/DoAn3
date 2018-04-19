@@ -29,8 +29,14 @@
                             <td>{{$dsb->users_id}}</td>
                             <td>{{$dsb->sodienthoai}}</td>
                             <td>{{number_format($dsb->tongtien)}}</td>
-                            <td>{{$dsb->timeBD}}</td>  
-                            <td>{{$dsb->tinhtrangdon}}</td>   
+                            <td>{{$dsb->timeBD}}</td> 
+                            @if($dsb->tinhtrangdon == 0) 
+                            <td>Moi</td> 
+                            @elseif($dsb->tinhtrangdon == 1) 
+                            <td>Da chap nhan</td>
+                            @else
+                            <td>Da tu choi</td>  
+                            @endif  
                         </tr>
                     @endforeach
                 </tbody>
