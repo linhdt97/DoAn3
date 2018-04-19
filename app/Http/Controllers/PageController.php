@@ -7,32 +7,47 @@ use App\User;
 use App\Tour;
 use App\Diadiem;
 use App\Bill;
+use App\Comment;
 use Hash;
 use Auth;
 
 class PageController extends Controller
 {
     public function getTrangchu(){
-        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','hinhanh','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
+        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','hinhanh','tendiadiem')
+                ->join('users','tour.users_id','=','users.id')
+                ->join('diadiem','tour.diadiem_id','=','diadiem.id')->paginate(6);
         return view('page_client.index',compact('tour'));
     }
 
     public function getChitiet($idtour){
-        $cttour = Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','sokhachmax','tendiadiem','hinhanh')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('tour.id',$idtour)->get();
+        $cttour = Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','sokhachmax','tendiadiem','hinhanh')
+                ->join('users','tour.users_id','=','users.id')
+                ->join('diadiem','tour.diadiem_id','=','diadiem.id')
+                ->where('tour.id',$idtour)->first();
+        $comment= Comment::select('email','noidung','comment.created_at')
+                ->join('users','users.id','=','comment.users_id')
+                ->where('tour_id',$idtour)->paginate(6);
         // echo '<pre>';
         // print_r($cttour);
         // echo '</pre>';
-        return view('page_client.chitiet', compact('cttour'));
+        return view('page_client.chitiet', compact('cttour','comment'));
     }
 
     public function getDiadiem($iddd){
-        $iddd=Tour::select('tour.id','users_id','hoten','tentour','giatour','hinhanh','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('diadiem.id',$iddd)->get();
-        $idd = Diadiem::find($iddd);
-        return view('page_client.diadiem',compact('iddd','idd'));
+        $dd = Diadiem::select('tendiadiem')->where('id',$iddd)->first();
+        $idd=Tour::select('tour.id','users_id','hoten','tentour','giatour','hinhanh','tendiadiem')
+                ->join('users','tour.users_id','=','users.id')
+                ->join('diadiem','tour.diadiem_id','=','diadiem.id')
+                ->where('diadiem.id',$iddd)->get();
+
+        return view('page_client.diadiem',compact('idd','dd'));
     }
 
     public function getDattour($idtour){
-        $dtour = Tour::select('tour.id','users_id','giatour','tentour','tendiadiem')->join('diadiem','diadiem.id','=','tour.diadiem_id')->where('tour.id',$idtour)->get();
+        $dtour = Tour::select('tour.id','users_id','giatour','tentour','tendiadiem')
+                ->join('diadiem','diadiem.id','=','tour.diadiem_id')
+                ->where('tour.id',$idtour)->get();
         // echo '<pre>';
         // print_r($dtour);
         // echo '</pre>';
@@ -75,7 +90,10 @@ class PageController extends Controller
     }
 
     public function getTourOfHdv($idhdv){
-        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','tendiadiem','hinhanh')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('users_id',$idhdv)->get();
+        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','tendiadiem','hinhanh')
+                ->join('users','tour.users_id','=','users.id')
+                ->join('diadiem','tour.diadiem_id','=','diadiem.id')
+                ->where('users_id',$idhdv)->paginate(6);
         //print_r($tour);
         return view('page_client.tour_cua_hdv', compact('tour'));
     }
@@ -195,5 +213,23 @@ class PageController extends Controller
     public function getDangxuat(){
         Auth::logout();
         return redirect()->route('trang-chu');
+    }
+
+    public function postBinhluan($idtour, Request $request){
+        $this -> validate($request,
+            [
+                'noidung'=>'required'
+            ],
+            [
+                'noidung.required'=>'Ban chua nhap noi dung binh luan'
+            ]);
+        $iduser = Auth::user()->id;
+
+        $comment = new Comment();
+        $comment->noidung = $request->noidung;
+        $comment->users_id = $iduser;
+        $comment->tour_id = $idtour;
+        $comment->save();
+        return redirect()->back()->with('thanhcong','Gui binh luan thanh cong');
     }
 }

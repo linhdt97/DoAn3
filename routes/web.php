@@ -41,6 +41,11 @@ Route::post('dang-nhap',['as'=>'dang-nhap', 'uses'=> 'PageController@postDangnha
 
 Route::get('dang-xuat',['as'=>'dang-xuat', 'uses'=> 'PageController@getDangxuat']);
 
+//Route::get('binh-luan-{idtour}',['as'=>'binh-luan', 'uses'=> 'PageController@getBinhluan']);
+Route::post('binh-luan-{idtour}',['as'=>'binh-luan', 'uses'=> 'PageController@postBinhluan']);
+
+
+
 //--------------------HDV------------------
 Route::group(['prefix'=>'hdv'], function(){
 	Route::get('trang-chu',['as' => 'trang-chu-hdv', 'uses'=>'HdvController@trangchu']);

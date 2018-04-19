@@ -22,7 +22,7 @@
 						<p>Huong dan vien:<a> {{$t->hoten}}</a></p>
 						<p>Dia diem: {{$t->tendiadiem}}<br>
 							
-						<p>Gia tour: {{$t->giatour}}</p>
+						<p>Gia tour: number_format($t->giatour) VND</p>
 						<a class="btn btn-primary" href="{{route('chitiet',$t->id)}}">Chi tiet<span class="glyphicon glyphicon-chevron-right"></span></a>
 					</div>
 				</div>
@@ -31,6 +31,10 @@
 			</div>
 			<!-- end item -->
 			@endforeach
+
+			<div align="center">
+				{{$tour->links()}}
+			</div>
 
 		</div>
 	</div>

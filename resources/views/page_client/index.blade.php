@@ -21,7 +21,7 @@
 						</h3>
 						Huong dan vien:<a href="{{route('tthdv',$t->users_id)}}"> {{$t->hoten}}</a>	
 						<p>Dia diem: {{$t->tendiadiem}}</p>
-						<p>Gia: {{$t->giatour}}</p>
+						<p>Gia: {{number_format($t->giatour)}} VND</p>
 						<a class="btn btn-primary" href="chi-tiet-{{$t->id}}">Chi tiet<span class="glyphicon glyphicon-chevron-right"></span></a>
 					</div>
 				</div>
@@ -30,6 +30,10 @@
 			</div>
 			<!-- end item -->
 			@endforeach
+
+			<div class="row" style="text-align: center">
+				{{$tour->links()}}
+			</div>
 
 		</div>
 	</div>
