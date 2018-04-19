@@ -28,13 +28,16 @@
                             <a href=""><i class="fa fa-bar-chart-o fa-fw"></i>Quan ly don dat tour<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/category/danhsach">Danh sach don dat tour</a>
+                                    <a href="{{route('dsdontour')}}">Danh sach don dat tour</a>
                                 </li>
                                 <li>
-                                    <a href="admin/category/danhsach">Danh sach don dat tour da chap nhan</a>
+                                    <a href="{{route('dsdontourmoi')}}">Don dat tour moi</a>
                                 </li>
                                 <li>
-                                    <a href="admin/category/danhsach">Danh sach don dat tour da tu choi</a>
+                                    <a href="{{route('dsdontourcn')}}">Don dat tour da chap nhan</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('dsdontourtc')}}">Don dat tour da tu choi</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

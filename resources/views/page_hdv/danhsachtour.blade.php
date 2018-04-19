@@ -13,7 +13,7 @@
                 <div class="alert alert-success" style="margin-top: 100px; width: 40%" align="center">
                     {{session('thongbao')}}
                 </div>
-            @endif
+                @endif
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr align="center">
@@ -38,11 +38,18 @@
                             <td>{{$dst->sokhachdangky}}</td>
                             <td>{{$dst->sokhachmax}}</td>
                             <td>{{number_format($dst->giatour)}}</td>
-                            <td>{{$dst->mota}}</td>   
-                            <td><img src="upload/{{$dst->hinhanh}}" width="50" height="50"></td>
+                            <td>{{$dst->mota}}</td>
+                            @if(strlen($dst->hinhanh)>0)  
+                                <td><img src="upload/{{$dst->hinhanh}}" width="50" height="50"></td>
+                            @else
+                                <td></td>
+                            @endif
                             @if($dst->sokhachdangky == 0)               
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('suatour',$dst->id)}}"> Edit</a></td>
+                                <td class="center"><i class="glyphicon glyphicon-pencil"></i><a href="{{route('suatour',$dst->id)}}"> Edit</a></td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('xoatour',$dst->id)}}"> Delete</a></td>
+                            @else
+                                <td></td>
+                                <td></td>
                             @endif
                         </tr>
                     @endforeach

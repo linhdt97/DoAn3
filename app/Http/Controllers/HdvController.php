@@ -22,6 +22,64 @@ class HdvController extends Controller
     	return view('page_hdv.danhsachtour', compact('tour'));
     }
 
+    public function getDSdontour(){
+        $iduser = Auth::user()->id;
+        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon')
+                ->where('tour.users_id',$iduser)
+                ->join('tour','tour.id','=','bill.tour_id')
+                ->join('users','bill.users_id','=','users.id')
+                ->get();
+        // echo '<pre>';
+        // print_r($bill);
+        // echo '</pre>';
+
+        return view('page_hdv.dsdattour', compact('bill'));
+    }
+
+    public function getDSdontourmoi(){
+        $iduser = Auth::user()->id;
+        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon')
+                ->where('tour.users_id',$iduser)
+                ->join('tour','tour.id','=','bill.tour_id')
+                ->join('users','bill.users_id','=','users.id')
+                ->get();
+        return view('page_hdv.dsdontourmoi', compact('bill'));
+    }
+
+    public function getDSdontourcn(){
+        $iduser = Auth::user()->id;
+        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon')
+                ->where('tour.users_id',$iduser)
+                ->join('tour','tour.id','=','bill.tour_id')
+                ->join('users','bill.users_id','=','users.id')
+                ->get();
+        return view('page_hdv.dsdontourcn', compact('bill'));
+    }
+
+    public function getDSdontourtc(){
+        $iduser = Auth::user()->id;
+        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon')
+                ->where('tour.users_id',$iduser)
+                ->join('tour','tour.id','=','bill.tour_id')
+                ->join('users','bill.users_id','=','users.id')
+                ->get();
+        return view('page_hdv.dsdontourtc', compact('bill'));
+    }
+
+    public function getChapnhandon($idd){
+        $don = Bill::find($idd);
+        $don -> tinhtrangdon = 1;
+        $don -> save();
+        return redirect()->back()->with('chapnhan','Chap nhan don dat tour thanh cong');
+    }
+
+    public function getTuchoidon($idd){
+        $don = Bill::find($idd);
+        $don -> tinhtrangdon = 2;
+        $don -> save();
+        return redirect()->back()->with('tuchoi','Tu choi don dat tour thanh cong');
+    }
+
     public function getThemtour(){
     	$dd = Diadiem::all();
     	return view('page_hdv.themtour',compact('dd'));

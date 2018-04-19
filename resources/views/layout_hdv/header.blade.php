@@ -18,8 +18,10 @@
                         <i class="fa fa-user fa-fw"></i> {{Auth::user()->hoten}} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                            <li><a href="{{route('dang-xuat')}}"><i class="fa fa-sign-out fa-fw"></i> Dang xuat</a>
-                            </li>
+                        <li><a href="{{route('dang-xuat')}}"><i class="fa fa-sign-out fa-fw"></i> Dang xuat</a>
+                        </li>
+                        <li><a href="{{route('trang-chu')}}"><i class="fa fa-sign-out fa-fw"></i> Quay ve trang chu</a>
+                        </li>
                         
                     </ul>
                     <!-- /.dropdown-user -->

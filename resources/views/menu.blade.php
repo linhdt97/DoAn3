@@ -15,21 +15,11 @@
         </li>  
 
         <ul>
-            <li class="list-group-item">
-                <a href="loaitin.html">Level2</a>
+            @foreach($diadiem as $dd)
+            <li class="list-group-item menu1">
+                <a href="{{route('diadiem',$dd->id)}}">{{$dd->tendiadiem}}</a>
             </li>
-    		<li class="list-group-item">
-    			<a href="loaitin.html">Level2</a>
-    		</li>
-    		<li class="list-group-item">
-    			<a href="loaitin.html">Level2</a>
-    		</li>
-    		<li class="list-group-item">
-    			<a href="loaitin.html">Level2</a>
-    		</li>
-    		<li class="list-group-item">
-    			<a href="loaitin.html">Level2</a>
-    		</li>
+            @endforeach
         </ul>
     </ul>
 </div>

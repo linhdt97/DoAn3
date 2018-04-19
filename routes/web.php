@@ -20,12 +20,11 @@ Route::get('quy-dinh',['as' => 'quy-dinh', 'uses' => 'PageController@getQuydinh'
 
 Route::get('chi-tiet-{idtour}',['as' => 'chitiet', 'uses' => 'PageController@getChitiet']);
 
+Route::get('dia-diem-{iddd}',['as'=>'diadiem', 'uses'=>'PageController@getDiadiem']);
+
 //dat tour
 Route::get('dat-tour-{idtour}',['as' => 'dattour', 'uses' => 'PageController@getDattour']);
 Route::post('dat-tour-{idtour}',['as' => 'dattour', 'uses' => 'PageController@postDattour']);
-Route::get('dat-tour-error',function(){
-	return view('page_client.index');
-});
 
 Route::get('thong-tin-hdv-{idhdv}',['as' => 'tthdv', 'uses' => 'PageController@getThongtinHDV']);
 Route::get('tour-cua-hdv-{idhdv}',['as' => 'tour_hdv', 'uses' => 'PageController@getTourOfHdv']);
@@ -54,6 +53,13 @@ Route::group(['prefix'=>'hdv'], function(){
 	Route::post('suatour/{idtour}',['as'=>'suatour', 'uses'=>'HdvController@postSuatour']);
 	Route::get('xoatour/{idtour}',['as'=>'xoatour', 'uses'=>'HdvController@getXoatour']);
 
+	Route::get('dsdontour',['as'=>'dsdontour', 'uses'=>'HdvController@getDSdontour']);
+	Route::get('dsdontourmoi',['as'=>'dsdontourmoi', 'uses'=>'HdvController@getDSdontourmoi']);
+	Route::get('cndontour/{idd}',['as'=>'chapnhan', 'uses'=>'HdvController@getChapnhandon']);
+	Route::get('tcdontour/{idd}',['as'=>'tuchoi', 'uses'=>'HdvController@getTuchoidon']);
+
+	Route::get('dsdontoucn',['as'=>'dsdontourcn', 'uses'=>'HdvController@getDSdontourcn']);
+	Route::get('dsdontourtc',['as'=>'dsdontourtc', 'uses'=>'HdvController@getDSdontourtc']);
 });
 
 
