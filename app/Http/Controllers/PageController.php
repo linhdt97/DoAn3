@@ -13,7 +13,7 @@ use Auth;
 class PageController extends Controller
 {
     public function getTrangchu(){
-        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','mota','hinhanh','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
+        $tour=Tour::select('tour.id','users_id','hoten','tentour','giatour','hinhanh','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
         return view('page_client.index',compact('tour'));
     }
 
@@ -23,6 +23,12 @@ class PageController extends Controller
         // print_r($cttour);
         // echo '</pre>';
         return view('page_client.chitiet', compact('cttour'));
+    }
+
+    public function getDiadiem($iddd){
+        $iddd=Tour::select('tour.id','users_id','hoten','tentour','giatour','hinhanh','tendiadiem')->join('users','tour.users_id','=','users.id')->join('diadiem','tour.diadiem_id','=','diadiem.id')->where('diadiem.id',$iddd)->get();
+        $idd = Diadiem::find($iddd);
+        return view('page_client.diadiem',compact('iddd','idd'));
     }
 
     public function getDattour($idtour){
