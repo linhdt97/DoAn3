@@ -27,6 +27,7 @@
                         <th>ID_Tour</th>
                         <th>ID_Khach</th>
                         <th>So dien thoai</th>
+                        <th>So khach tham quan</th>
                         <th>Tong tien</th>
                         <th>Thoi gian bat dau</th>
                         <th>Chap nhan</th>
@@ -41,6 +42,7 @@
                             <td>{{$dsb->tour_id}}</td>
                             <td>{{$dsb->users_id}}</td>
                             <td>{{$dsb->sodienthoai}}</td>
+                            <td>{{$dsb->sokhachdangky}}</td>
                             <td>{{number_format($dsb->tongtien)}}</td>
                             <td>{{$dsb->timeBD}}</td>          
                             <td class="center"><i class="glyphicon glyphicon-ok"></i><a href="{{route('chapnhan',$dsb->id)}}"> Chap nhan</a></td>

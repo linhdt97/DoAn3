@@ -20,7 +20,6 @@ class CreateTourTable extends Migration
             $table->string('tentour',50);
             $table->integer('diadiem_id')->unsigned();
             $table->foreign('diadiem_id')->references('id')->on('diadiem')->onDelete('cascade');
-            $table->integer('sokhachdangky');
             $table->integer('sokhachmax');
             $table->integer('giatour');
             $table->text('mota');

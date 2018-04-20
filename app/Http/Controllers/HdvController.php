@@ -17,14 +17,14 @@ class HdvController extends Controller
 
     public function getDanhsachtour(){
     	$iduser = Auth::user()->id;
-    	$tour = Tour::select('tour.id','tendiadiem','giatour','sokhachmax','sokhachdangky','hinhanh','mota','tentour','hinhanh')->where('users_id',$iduser)->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
+    	$tour = Tour::select('tour.id','tendiadiem','giatour','sokhachmax','hinhanh','mota','tentour','hinhanh')->where('users_id',$iduser)->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
     	//print_r($tour);
     	return view('page_hdv.danhsachtour', compact('tour'));
     }
 
     public function getDSdontour(){
         $iduser = Auth::user()->id;
-        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon')
+        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon','sokhachdangky')
                 ->where('tour.users_id',$iduser)
                 ->join('tour','tour.id','=','bill.tour_id')
                 ->join('users','bill.users_id','=','users.id')
@@ -38,7 +38,7 @@ class HdvController extends Controller
 
     public function getDSdontourmoi(){
         $iduser = Auth::user()->id;
-        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon')
+        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon','sokhachdangky')
                 ->where('tour.users_id',$iduser)
                 ->join('tour','tour.id','=','bill.tour_id')
                 ->join('users','bill.users_id','=','users.id')
@@ -48,7 +48,7 @@ class HdvController extends Controller
 
     public function getDSdontourcn(){
         $iduser = Auth::user()->id;
-        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon')
+        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon','sokhachdangky')
                 ->where('tour.users_id',$iduser)
                 ->join('tour','tour.id','=','bill.tour_id')
                 ->join('users','bill.users_id','=','users.id')
@@ -58,7 +58,7 @@ class HdvController extends Controller
 
     public function getDSdontourtc(){
         $iduser = Auth::user()->id;
-        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon')
+        $bill = Bill::select('bill.id','tour_id','tentour','bill.users_id','sodienthoai','tongtien','timeBD','tinhtrangdon','sokhachdangky')
                 ->where('tour.users_id',$iduser)
                 ->join('tour','tour.id','=','bill.tour_id')
                 ->join('users','bill.users_id','=','users.id')
@@ -105,7 +105,6 @@ class HdvController extends Controller
     	$tour->tentour= $request->tentour;
     	$tour->diadiem_id= $request->diadiem;
     	$tour->sokhachmax=$request->sokhachmax;
-    	$tour->sokhachdangky=0;
     	$tour->giatour= $request->giatour;
     	$tour->mota= $request->mota;
 

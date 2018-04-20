@@ -15,5 +15,9 @@ class Comment extends Model
 	public function tour(){
     	$this -> belongsTo('App\Tour');
     }
+
+    public function traloi(){
+    	return $this -> hasMany('App\Traloi');
+    }
 	
 }

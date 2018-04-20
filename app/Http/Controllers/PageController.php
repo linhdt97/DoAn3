@@ -74,9 +74,7 @@ class PageController extends Controller
 
         $tour = Tour::find($idtour);
         if($tour->sokhachmax < $request->sokhachdangky) return redirect()->back()->with('loi','So khach dang ky phai nho hon hoac bang so khach max.');
-        $tour->sokhachdangky = $request->sokhachdangky;
-        $tour->save();
-
+        $bill->sokhachdangky = $request->sokhachdangky;
         $bill->save();
         return redirect()->back()->with('thanhcong','Gui don dat tour thanh cong');
     }
@@ -231,5 +229,94 @@ class PageController extends Controller
         $comment->tour_id = $idtour;
         $comment->save();
         return redirect()->back()->with('thanhcong','Gui binh luan thanh cong');
+    }
+
+    public function getThongtincanhan(){
+        $user = Auth::user();
+        return view('page_client.thongtincanhan', compact('user'));
+    }
+
+    public function getSuathongtin(){
+        $user = Auth::user();
+        return view('page_client.suathongtin', compact('user'));
+    }
+
+    public function postSuathongtin(Request $request){
+       $this -> validate($request,
+            [
+                'hoten'=>'required',
+                'sodienthoai'=>'required',
+                'diachi' =>'required',
+            ],
+            [
+                'hoten.required'=>'Vui long nhap hoten',
+                'sodienthoai.required'=>'Vui long nhap so dien thoai',
+                'diachi.required'=>'Vui long nhap dia chi',
+            ]);     
+        $user = Auth::user();
+        $user->hoten = $request->hoten;
+
+        if($request->checkpassword == "on"){
+            $this->validate($request,
+                [
+                    'password'=>'required|min:6|max:30',
+                    'passwordAgain' =>'required|same:password'
+                ],
+                [
+                    'password.required' => 'Bạn chưa nhập mật khẩu moi',
+                    'password.min' => 'Mật khẩu moi toi thieu 6 kí tự',
+                    'password.max' => 'Mật khẩu moi tối đa 30 kí tự',
+                    'passwordAgain.required' => 'Bạn chưa nhập lại mật khẩu',
+                    'passwordAgain.same' => 'Xac nhan mat khau moi khong đúng'
+                ]);
+            $user->password = bcrypt($request->password);
+        }
+            if($request->hasFile('anhdaidien')){
+                $file = $request->file('anhdaidien');
+                $duoi = $file->getClientOriginalExtension();
+                if($duoi != 'jpg' && $duoi != "png" && $duoi != "jpeg"){
+                    return redirect()->back()->with('loi','Định dạng ảnh phải là jpg, png, jpeg');
+                }
+
+                $name = $file->getClientOriginalName();
+                echo $name;
+                $anhdaidien= str_random(4)."_".$name;
+                while(file_exists("upload".$anhdaidien)){
+                    $anhdaidien= str_random(4)."_".$name;
+                }
+                
+                $file->move("upload",$anhdaidien);
+                $user->anhdaidien = $anhdaidien;
+            }
+
+        $user->sodienthoai=$request->sodienthoai;
+        $user->diachi = $request->diachi;
+        $user->namsinh = $request->namsinh;
+        if($request->gioitinh != "")
+            $user->gioitinh = $request->gioitinh;
+        $user->save();
+        return redirect()->route('thong-tin-ca-nhan')->with('thanhcong','Sua thong tin thanh cong');
+    }
+
+    public function postTimkiem(Request $request){
+        $this->validate($request,
+            [
+                'timkiem' => 'required'
+            ],
+            [
+                'timkiem.required'=> 'Vui long nhap thong tin can tim kiem'
+            ]);
+        $tk = $request->timkiem;
+        $ketqua = Tour::where('tentour','like','%'.$tk.'%')
+                            ->orwhere('giatour',$tk)
+                            ->join('diadiem','tour.diadiem_id','=','diadiem.id')
+                            ->orwhere('tendiadiem','like','%'.$tk.'%')
+                            ->paginate(6);
+        $count  = Tour::where('tentour','like','%'.$tk.'%')
+                            ->orwhere('giatour',$tk)
+                            ->join('diadiem','tour.diadiem_id','=','diadiem.id')
+                            ->orwhere('tendiadiem','like','%'.$tk.'%')
+                            ->get();
+        return view('page_client.timkiem',compact('ketqua','count','tk'));
     }
 }

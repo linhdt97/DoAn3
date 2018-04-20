@@ -20,7 +20,6 @@
                         <th>ID</th>
                         <th>Ten tour</th>
                         <th>Dia diem</th>
-                        <th>So khach da dang ky</th>
                         <th>So khach max</th>
                         <th>Gia tour</th>
                         <th>Mo ta</th>
@@ -35,7 +34,6 @@
                             <td>{{$dst->id}}</td>
                             <td>{{$dst->tentour}}</td>
                             <td>{{$dst->tendiadiem}}</td>
-                            <td>{{$dst->sokhachdangky}}</td>
                             <td>{{$dst->sokhachmax}}</td>
                             <td>{{number_format($dst->giatour)}}</td>
                             <td>{{$dst->mota}}</td>

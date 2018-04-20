@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBillTable extends Migration
+class CreateImagetourTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateBillTable extends Migration
      */
     public function up()
     {
-        Schema::create('bill', function (Blueprint $table) {
+        Schema::create('imagetour', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tour_id')->unsigned();
             $table->foreign('tour_id')->references('id')->on('tour')->onDelete('cascade');
-            $table->integer('users_id')->unsigned();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('sokhachdangky');
-            $table->integer('tongtien');
-            $table->integer('tinhtrangdon');
-            $table->date('timeBD');
+            $table->string('image',100);
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ class CreateBillTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bill');
+        Schema::dropIfExists('imagetour');
     }
 }
