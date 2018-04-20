@@ -43,7 +43,11 @@
                             <td>{{$dsh->diachi}}</td>  
                             <td>{{$dsh->status}}</td>                 
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('xoahdv1',$dsh->id)}}"> Delete</a></td>
-                            <td class="center"><i class=""></i><a href="{{route('cnhdv1',$dsh->id)}}"> Chap nhan</a></td>
+                            @if($dsh->status == "" || $dsh->status == 1)
+                                <td class="center"><i class=""></i><a href="{{route('cnhdv1',$dsh->id)}}"> Chap nhan</a></td>
+                            @else
+                                <td></td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

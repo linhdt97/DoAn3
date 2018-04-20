@@ -44,7 +44,13 @@ Route::get('dang-xuat',['as'=>'dang-xuat', 'uses'=> 'PageController@getDangxuat'
 //Route::get('binh-luan-{idtour}',['as'=>'binh-luan', 'uses'=> 'PageController@getBinhluan']);
 Route::post('binh-luan-{idtour}',['as'=>'binh-luan', 'uses'=> 'PageController@postBinhluan']);
 
+//xem va sua thong tin ca nhan
+Route::get('thong-tin-ca-nhan',['as'=>'thong-tin-ca-nhan', 'uses' => 'PageController@getThongtincanhan']);
+Route::get('sua-thong-tin',['as'=>'sua-thong-tin', 'uses'=>'PageController@getSuaThongtin']);
+Route::post('sua-thong-tin',['as'=>'sua-thong-tin', 'uses'=>'PageController@postSuaThongtin']);
 
+//tim kiem
+Route::get('tim-kiem',['as'=>'tim-kiem','uses' => 'PageController@postTimkiem']);
 
 //--------------------HDV------------------
 Route::group(['prefix'=>'hdv'], function(){

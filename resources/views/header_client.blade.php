@@ -13,23 +13,29 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <form class="navbar-form navbar-left" role="search">
-			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="....." size="40"> 
+                <form class="navbar-form navbar-left" role="search" action="{{route('tim-kiem')}}">
+			        <div class="form-group" style="">
+			          <input type="text" name= "timkiem" class="form-control" placeholder="nhap thong tin can tim kiem" size="40"> 
 			        </div>
-			        <button type="submit" class="btn btn-default">Search</button>
+			        <button type="submit" class="btn btn-default" style="">Search</button>
 			    </form>
 
 			    <ul class="nav navbar-nav pull-right">
                     @if(Auth::check())
-                        <li><a href=""><i class="fa fa-user"></i>{{Auth::User()->hoten}}</a></li>
-                        @if(Auth::User()->quyen == 2)                    
-                            <li><a href="{{route('trang-chu-hdv')}}"><i class="fa fa-user"></i>Den trang quan ly tour</a></li>
+                        @if(Auth::User()->anhdaidien != "")
+                            <li><p style="margin-top: 5px"><a href="{{route('thong-tin-ca-nhan')}}"> <img src="upload/{{Auth::User()->anhdaidien}}" width="50" height="45">  {{Auth::User()->hoten}}</a></p></li>
+                        @else
+                            <li><a href="{{route('thong-tin-ca-nhan')}}"><i class="fa fa-user"></i> {{Auth::User()->hoten}} </a></li>
                         @endif
-                            
-                    <li>
-                        <a href="{{ route('dang-xuat')}}">Đăng xuất</a>
-                    </li>    
+                            @if(Auth::User()->quyen == 2)                    
+                                <li><a href="{{route('trang-chu-hdv')}}"><i class="fa fa-user"></i> Den trang quan ly tour</a></li>
+                            @endif
+                                
+                            <li>
+                                <a href="{{ route('dang-xuat')}}">Đăng xuất</a>
+                            </li>
+                        
+
                     @else
                         <li>
                             <a href="{{ route('dang-ky-khach')}}">Đăng ký Khách hàng</a>

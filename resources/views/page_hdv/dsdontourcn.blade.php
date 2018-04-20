@@ -16,6 +16,7 @@
                         <th>ID_Tour</th>
                         <th>ID_Khach</th>
                         <th>So dien thoai</th>
+                        <th>So khach tham quan</th>
                         <th>Tong tien</th>
                         <th>Thoi gian bat dau</th>
                     </tr>
@@ -28,6 +29,7 @@
                             <td>{{$dsb->tour_id}}</td>
                             <td>{{$dsb->users_id}}</td>
                             <td>{{$dsb->sodienthoai}}</td>
+                            <td>{{$dsb->sokhachdangky}}</td>
                             <td>{{number_format($dsb->tongtien)}}</td>
                             <td>{{$dsb->timeBD}}</td>
                         </tr>

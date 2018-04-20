@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->insert([
         	array('hoten' => 'HDV 1',
-        		'email' =>'emailhdv1@gmail.com', 
+        		'email' =>'hdv1@gmail.com', 
         		'password' => bcrypt('123456'), 
         		'gioitinh' => 'Nam', 
         		'diachi' => 'HaNoi',
@@ -27,7 +27,7 @@ class UserTableSeeder extends Seeder
         		'status' => 1),
 
             array('hoten' => 'HDV 2',
-                'email' =>'emailhdv2@gmail.com', 
+                'email' =>'hdv2@gmail.com', 
                 'password' => bcrypt('123456'), 
                 'gioitinh' => 'Nam', 
                 'diachi' => 'HaNoi',
@@ -37,7 +37,7 @@ class UserTableSeeder extends Seeder
                 'status' => 1),
 
             array('hoten' => 'HDV 3',
-                'email' =>'emailhdv3@gmail.com', 
+                'email' =>'hdv3@gmail.com', 
                 'password' => bcrypt('123456'), 
                 'gioitinh' => 'Nu', 
                 'diachi' => 'BacNinh',
@@ -47,7 +47,7 @@ class UserTableSeeder extends Seeder
                 'status' => 2),
 
             array('hoten' => 'HDV 4',
-                'email' =>'emailhdv4@gmail.com', 
+                'email' =>'hdv4@gmail.com', 
                 'password' => bcrypt('123456'), 
                 'gioitinh' => 'Nam', 
                 'diachi' => 'HaNoi',
@@ -57,7 +57,7 @@ class UserTableSeeder extends Seeder
                 'status' => 1),
 
             array('hoten' => 'HDV 5',
-                'email' =>'emailhdv5@gmail.com', 
+                'email' =>'hdv5@gmail.com', 
                 'password' => bcrypt('123456'), 
                 'gioitinh' => 'Nu', 
                 'diachi' => 'BacNinh',
@@ -67,7 +67,7 @@ class UserTableSeeder extends Seeder
                 'status' => 1),
 
             array('hoten' => 'HDV 6',
-                'email' =>'emailhdv6@gmail.com', 
+                'email' =>'hdv6@gmail.com', 
                 'password' => bcrypt('123456'), 
                 'gioitinh' => 'Nu', 
                 'diachi' => 'BacNinh',
@@ -161,13 +161,13 @@ class TourTableSeeder extends Seeder
     public function run()
     {
         DB::table('tour')->insert([
-        	array('users_id'=>1, 'tentour'=>'Du lich Ha Noi', 'diadiem_id'=>1, 'sokhachdangky' => 2, 'sokhachmax'=>4, 'giatour' => 1000000, 'mota'=>'Du lich vong quanh Ha Noi va tham Ho Guom' ),
-        	array('users_id'=>2, 'tentour'=>'Du lich Ha Noi', 'diadiem_id'=>1, 'sokhachdangky' => 2, 'sokhachmax'=>2, 'giatour' => 2000000, 'mota'=>'Du lich vong quanh Ha Noi va tham Lang Bac' ),
-        	array('users_id'=>3, 'tentour'=>'Du lich TP HCM', 'diadiem_id'=>2, 'sokhachdangky' => 0, 'sokhachmax'=>4, 'giatour' => 1500000, 'mota'=>'Du lich TP HCM va tham Dinh Doc Lap' ),
-        	array('users_id'=>4, 'tentour'=>'Du lich Bac Ninh', 'diadiem_id'=>4, 'sokhachdangky' => 3, 'sokhachmax'=>4, 'giatour' => 800000, 'mota'=>'Du lich vong quanh Bac Ninh va tham Lang Kinh Duong Vuong' ),
-            array('users_id'=>5, 'tentour'=>'Du lich Thai Binh', 'diadiem_id'=>5, 'sokhachdangky' => 0, 'sokhachmax'=>1, 'giatour' => 900000, 'mota'=>'Du lich vong quanh Thai Binh' ),
-            array('users_id'=>5, 'tentour'=>'Du lich Bac Ninh', 'diadiem_id'=>4, 'sokhachdangky' => 2, 'sokhachmax'=>10, 'giatour' => 1100000, 'mota'=>'Du lich vong quanh Bac Ninh va tham Lang Kinh Duong Vuong' ),
-            array('users_id'=>5, 'tentour'=>'Du lich Ha Noi', 'diadiem_id'=>1, 'sokhachdangky' => 8, 'sokhachmax'=>10, 'giatour' => 1300000, 'mota'=>'Du lich vong quanh Ha Noi va tham Lang Bac' )
+        	array('users_id'=>1, 'tentour'=>'Du lich Ha Noi', 'diadiem_id'=>1, 'sokhachmax'=>4, 'giatour' => 1000000, 'mota'=>'Du lich vong quanh Ha Noi va tham Ho Guom' ),
+        	array('users_id'=>2, 'tentour'=>'Du lich Ha Noi', 'diadiem_id'=>1, 'sokhachmax'=>2, 'giatour' => 2000000, 'mota'=>'Du lich vong quanh Ha Noi va tham Lang Bac' ),
+        	array('users_id'=>3, 'tentour'=>'Du lich TP HCM', 'diadiem_id'=>2, 'sokhachmax'=>4, 'giatour' => 1500000, 'mota'=>'Du lich TP HCM va tham Dinh Doc Lap' ),
+        	array('users_id'=>4, 'tentour'=>'Du lich Bac Ninh', 'diadiem_id'=>4, 'sokhachmax'=>4, 'giatour' => 800000, 'mota'=>'Du lich vong quanh Bac Ninh va tham Lang Kinh Duong Vuong' ),
+            array('users_id'=>5, 'tentour'=>'Du lich Thai Binh', 'diadiem_id'=>5, 'sokhachmax'=>1, 'giatour' => 900000, 'mota'=>'Du lich vong quanh Thai Binh' ),
+            array('users_id'=>5, 'tentour'=>'Du lich Bac Ninh', 'diadiem_id'=>4, 'sokhachmax'=>10, 'giatour' => 1100000, 'mota'=>'Du lich vong quanh Bac Ninh va tham Lang Kinh Duong Vuong' ),
+            array('users_id'=>5, 'tentour'=>'Du lich Ha Noi', 'diadiem_id'=>1, 'sokhachmax'=>10, 'giatour' => 1300000, 'mota'=>'Du lich vong quanh Ha Noi va tham Lang Bac' )
         ]);
     }
 }

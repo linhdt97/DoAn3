@@ -28,4 +28,8 @@ class Tour extends Model
     public function diadiem(){
         return $this -> belongsTo('App\Diadiem');
     }
+
+    public function imagetour(){
+        return $this -> hasMany('App\ImageTour');
+    }
 }

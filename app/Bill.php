@@ -15,4 +15,8 @@ class Bill extends Model
     public function tour(){
     	return $this->belongsTo('App\Tour');
     }
+
+    public function thanhtoan(){
+    	return $this -> hasOne('App\Thanhtoan');
+    }
 }

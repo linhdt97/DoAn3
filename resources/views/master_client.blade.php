@@ -77,6 +77,17 @@
     <script src="admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#changePassword").change(function(){
+                if($(this).is(":checked")){
+                    $(".password").removeAttr('disabled');
+                }else{
+                    $(".password").attr('disabled','');
+                }
+            });
+        });
+    </script>
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
