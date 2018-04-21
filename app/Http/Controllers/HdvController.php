@@ -17,8 +17,7 @@ class HdvController extends Controller
 
     public function getDanhsachtour(){
     	$iduser = Auth::user()->id;
-    	$tour = Tour::select('tour.id','tendiadiem','giatour','sokhachmax','hinhanh','mota','tentour','hinhanh')->where('users_id',$iduser)->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
-    	//print_r($tour);
+    	$tour = Tour::select('tour.id','tendiadiem','giatour','sokhachmax','hinhanh','mota','tentour')->where('tour.users_id',$iduser)->join('diadiem','tour.diadiem_id','=','diadiem.id')->get();
     	return view('page_hdv.danhsachtour', compact('tour'));
     }
 
@@ -189,4 +188,5 @@ class HdvController extends Controller
     	Tour::find($idtour)->delete();
     	return redirect()->back()->with('thongbao','Xoa tour thanh cong');
     }
+
 }

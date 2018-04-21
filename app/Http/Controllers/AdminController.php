@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Diadiem;
+use App\Comment;
+use App\Traloi;
 
 class AdminController extends Controller
 {
@@ -88,4 +90,23 @@ class AdminController extends Controller
         $cn->save();
         return redirect()->back()->with('success','Thanh cong');
     }
+
+    public function DSBinhluan(){
+        $comment = Comment::all();
+        return view('admin.page_admin.dsbinhluan', compact('comment'));
+    }
+
+    public function DSTraloi(){
+
+    }
+
+    public function Xoabinhluan($idbl){
+        Comment::find($idbl)->delete();
+        return redirect()->back()->with('thongbao','Xoa binh luan thanh cong');
+    }
+
+    public function Xoatraloi($idtl){
+
+    }
+
 }

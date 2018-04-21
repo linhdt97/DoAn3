@@ -8,6 +8,7 @@ use App\Tour;
 use App\Diadiem;
 use App\Bill;
 use App\Comment;
+use App\Traloi;
 use Hash;
 use Auth;
 
@@ -25,13 +26,15 @@ class PageController extends Controller
                 ->join('users','tour.users_id','=','users.id')
                 ->join('diadiem','tour.diadiem_id','=','diadiem.id')
                 ->where('tour.id',$idtour)->first();
-        $comment= Comment::select('email','noidung','comment.created_at')
+        $comment= Comment::select('comment.id','email','noidung','comment.created_at')
                 ->join('users','users.id','=','comment.users_id')
                 ->where('tour_id',$idtour)->paginate(6);
+
+        $traloi = Traloi::select('users.email','comment_id','traloi.created_at','ndtraloi','traloi.id')->join('users','users.id','=','traloi.users_id')->get();
         // echo '<pre>';
-        // print_r($cttour);
+        // print_r($traloi);
         // echo '</pre>';
-        return view('page_client.chitiet', compact('cttour','comment'));
+        return view('page_client.chitiet', compact('cttour','comment','traloi'));
     }
 
     public function getDiadiem($iddd){
@@ -318,5 +321,37 @@ class PageController extends Controller
                             ->orwhere('tendiadiem','like','%'.$tk.'%')
                             ->get();
         return view('page_client.timkiem',compact('ketqua','count','tk'));
+    }
+
+    public function getLichsu(){
+        $iduser = Auth::user()->id;
+        $lichsu = Bill::select('tour_id','sokhachdangky','tongtien','tinhtrangdon','tentour','tour.users_id','hinhanh','bill.id')
+            ->where('bill.users_id',$iduser)
+            ->join('tour','tour.id','=','bill.tour_id')->paginate(6);
+        return view('page_client.lichsudattour', compact('lichsu'));
+    }
+
+    public function getTraloi($idbl){
+        $bl = Comment::select('id','noidung')->where('id',$idbl)->first();
+        return view('page_client.traloibinhluan',compact('bl'));
+    }
+
+    public function postTraloi($idbl, Request $request){
+        $iduser= Auth::user()->id;
+        $idtour = Comment::find($idbl)->tour_id;
+
+        $this->validate($request,
+            [
+                'traloi'=>'required'
+            ],
+            [   
+                'traloi.required'=>'Vui long nhap cau tra loi'
+            ]);
+        $traloi = new Traloi();
+        $traloi->comment_id = $idbl;
+        $traloi->users_id = $iduser;
+        $traloi->ndtraloi = $request->traloi;
+        $traloi->save();
+        return redirect()->route('chitiet',$idtour);
     }
 }

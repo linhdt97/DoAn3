@@ -51,10 +51,27 @@
 					<li>
 						<a><i class="fa fa-user"></i>{{$cm->email}}</a>
 						<a style="margin-left: 5px"><i class="fa fa-clock-o"></i>{{$cm->created_at}}</a>
+						<br>{{$cm->noidung}}<br>
+						@foreach($traloi as $tl)
+						@if($tl->comment_id == $cm->id)
+							<div>
+								<ul style="list-style: none">
+									<a><i class="fa fa-user"></i>{{$tl->email}}</a>
+									<a style="margin-left: 5px"><i class="fa fa-clock-o"></i>{{$tl->created_at}}</a>
+									<br>{{$tl->ndtraloi}}<br>
+								</ul>
+							</div>
+						@endif
+						@endforeach 
+
+						@if(Auth::check())
+						<a href="{{route('tra-loi',$cm->id)}}" style="margin-left: 40px ">Tra loi</a>
+						@endif
 					</li>
-					<p>{{$cm->noidung}}</p>
+							
 				</ul>	
 				</div>
+				
 				@endforeach
 				<div class="row" style="text-align: center">
 					{{$comment->links()}}

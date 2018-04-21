@@ -26,6 +26,8 @@ Route::get('dia-diem-{iddd}',['as'=>'diadiem', 'uses'=>'PageController@getDiadie
 Route::get('dat-tour-{idtour}',['as' => 'dattour', 'uses' => 'PageController@getDattour']);
 Route::post('dat-tour-{idtour}',['as' => 'dattour', 'uses' => 'PageController@postDattour']);
 
+Route::get('lich-su-dat-tour',['as'=>'lich-su','uses'=>'PageController@getLichsu']);
+
 Route::get('thong-tin-hdv-{idhdv}',['as' => 'tthdv', 'uses' => 'PageController@getThongtinHDV']);
 Route::get('tour-cua-hdv-{idhdv}',['as' => 'tour_hdv', 'uses' => 'PageController@getTourOfHdv']);
 
@@ -41,8 +43,10 @@ Route::post('dang-nhap',['as'=>'dang-nhap', 'uses'=> 'PageController@postDangnha
 
 Route::get('dang-xuat',['as'=>'dang-xuat', 'uses'=> 'PageController@getDangxuat']);
 
-//Route::get('binh-luan-{idtour}',['as'=>'binh-luan', 'uses'=> 'PageController@getBinhluan']);
+//Binh luan va tra loi
 Route::post('binh-luan-{idtour}',['as'=>'binh-luan', 'uses'=> 'PageController@postBinhluan']);
+Route::get('tra-loi-{idbl}',['as'=>'tra-loi', 'uses'=> 'PageController@getTraloi']);
+Route::post('tra-loi-{idbl}',['as'=>'tra-loi', 'uses'=> 'PageController@postTraloi']);
 
 //xem va sua thong tin ca nhan
 Route::get('thong-tin-ca-nhan',['as'=>'thong-tin-ca-nhan', 'uses' => 'PageController@getThongtincanhan']);
@@ -89,6 +93,12 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('dshdv',['as'=>'dshdv1', 'uses'=> 'AdminController@getDShdv']);
 	Route::get('xoahdv/{idhdv}',['as'=>'xoahdv1', 'uses'=> 'AdminController@Xoahdv']);
 	Route::get('chapnhan/{idhdv}',['as'=>'cnhdv1', 'uses'=> 'AdminController@ChapnhanHdv']);
+
+	//quan ly binh luan
+	Route::get('dsbinhluan',['as'=>'dsbinhluan', 'uses'=>'AdminController@DSBinhluan']);
+	Route::get('xoabinhluan/{idbl}',['as'=>'xoabinhluan', 'uses'=>'AdminController@Xoabinhluan']);
+	Route::get('dstraloi',['as'=>'dstraloi', 'uses'=>'AdminController@DSTraloi']);
+	Route::get('xoatraloi/{idtl}',['as'=>'xoatraloi', 'uses'=>'AdminController@Xoatraloi']);
 
 	//Quan ly dia diem du lich
 	Route::get('dsdd',['as'=>'dsdd1', 'uses'=> 'AdminController@getDSdd']);
