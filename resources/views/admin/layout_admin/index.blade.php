@@ -29,42 +29,48 @@
 </head>
 
 <body>
+    @if(Auth::check())
+        @if(Auth::user()->quyen ==3)
+        <div id="wrapper">
 
-    <div id="wrapper">
+            @include('admin.layout_admin.header');
+            @yield('content');
 
-        @include('admin.layout_admin.header');
-        @yield('content');
+        </div>
+        <!-- /#wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="admin/bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- jQuery -->
-    <script src="admin/bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="admin/dist/js/sb-admin-2.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="admin/dist/js/sb-admin-2.js"></script>
+        <!-- DataTables JavaScript -->
+        <script src="admin/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
+        <script src="admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
-    <!-- DataTables JavaScript -->
-    <script src="admin/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
-    <script src="admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                    responsive: true
+            });
         });
-    });
-    </script>
+        </script>
 
-    @yield('script');
-
+        @yield('script');
+        @else
+        Tai khoan cua ban khong co quyen vao trang nay. Vui long quay lai <a href="{{route('trang-chu')}}">Trang chu</a>
+        @endif
+    @else
+        Vui long <a href="{{route('dang-nhap')}}">Dang nhap</a>
+    @endif
 </body>
 
 </html>

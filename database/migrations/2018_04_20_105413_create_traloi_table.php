@@ -17,6 +17,8 @@ class CreateTraloiTable extends Migration
             $table->increments('id');
             $table->integer('comment_id')->unsigned();
             $table->foreign('comment_id')->references('id')->on('comment')->onDelete('cascade');
+            $table->integer('users_id')->unsigned();
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('ndtraloi');
             $table->timestamps();
         });

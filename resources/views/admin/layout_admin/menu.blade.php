@@ -36,6 +36,20 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+
+                        <li>
+                            <a href=""><i class="fa fa-bar-chart-o fa-fw"></i>Quan ly binh luan<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{route('dsbinhluan')}}">Danh sach binh luan</a>
+                                </li>
+                                <li>
+                                    <a href="dstraloi">Danh sach tra loi binh luan</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
                         <li>
                             <a href=""><i class="fa fa-bar-chart-o fa-fw"></i>Quan ly Dia diem du lich<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

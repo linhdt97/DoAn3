@@ -42,15 +42,6 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href=""><i class="fa fa-bar-chart-o fa-fw"></i>Quan ly binh luan<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="admin/category/danhsach">Xem danh sach binh luan</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

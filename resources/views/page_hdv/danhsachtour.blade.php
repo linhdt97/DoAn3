@@ -42,13 +42,8 @@
                             @else
                                 <td></td>
                             @endif
-                            @if($dst->sokhachdangky == 0)               
-                                <td class="center"><i class="glyphicon glyphicon-pencil"></i><a href="{{route('suatour',$dst->id)}}"> Edit</a></td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('xoatour',$dst->id)}}"> Delete</a></td>
-                            @else
-                                <td></td>
-                                <td></td>
-                            @endif
+                            <td class="center"><i class="glyphicon glyphicon-pencil"></i><a href="{{route('suatour',$dst->id)}}"> Edit</a></td>
+                            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{{route('xoatour',$dst->id)}}"> Delete</a></td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -28,7 +28,9 @@
                             <li><a href="{{route('thong-tin-ca-nhan')}}"><i class="fa fa-user"></i> {{Auth::User()->hoten}} </a></li>
                         @endif
                             @if(Auth::User()->quyen == 2)                    
-                                <li><a href="{{route('trang-chu-hdv')}}"><i class="fa fa-user"></i> Den trang quan ly tour</a></li>
+                                <li><a href="{{route('trang-chu-hdv')}}"><i class="glyphicon glyphicon-arrow-right"></i> Den trang quan ly tour</a></li>
+                            @elseif(Auth::User()->quyen == 1)
+                                <li><a href="{{route('lich-su')}}"><i class="glyphicon glyphicon-shopping-cart"></i> Lich su dat tour</a></li>
                             @endif
                                 
                             <li>
@@ -37,7 +39,7 @@
                         
 
                     @else
-                        <li>
+                        <li> 
                             <a href="{{ route('dang-ky-khach')}}">Đăng ký Khách hàng</a>
                         </li>
                         <li>
